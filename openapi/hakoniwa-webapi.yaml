@@ -1,0 +1,91 @@
+openapi: "3.0.0"
+info:
+  title: Hakoniwa WebAPI
+  version: "1.0"
+servers:
+  - url: https://hakoniwa.server.api/v1
+paths:
+  /api/control:
+    put:
+      description: hakoniwa simulation control.
+      operationId: ControlSimulation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ControlRequest'
+      responses:
+        '200':
+          description: OK
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /api/assets:
+    get:
+      operationId: GetAssetList
+      responses:
+        '200':
+          description: get hakoniwa asset lists
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssetLists"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /api/status:
+    get:
+      operationId: GetSimStatus
+      responses:
+        '200':
+          description: get hakoniwa simulation status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SimulationStatus"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    ControlRequest:
+      required:
+        - control_type
+      properties:
+        control_type:
+          type: string
+          enum: [start, stop, reset]
+    AssetLists:
+      required:
+        - names
+      properties:
+        names:
+          type: array
+          items:
+            type: string
+    SimulationStatus:
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          enum: [stopped, runnable, running, stopping, terminated]
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
