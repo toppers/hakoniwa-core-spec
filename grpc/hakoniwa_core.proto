@@ -92,5 +92,5 @@ message NotifySimtimeRequest {
 
 message NotifySimtimeReply {
   ErrorCode ercd = 1;
-  int64 master_time = 1;
+  int64 master_time = 2;
 }
