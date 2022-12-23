@@ -35,6 +35,8 @@ service CoreService {
 
   //箱庭シミュレーション時間取得
   rpc NotifySimtime(NotifySimtimeRequest) returns (NotifySimtimeReply) {}
+  //箱庭PDUチャネル作成
+  rpc CreatePduChannel(CreatePduChannelRequest) returns (CreatePduCHannelReply) {}
 }
 enum AssetNotificationEvent {
   ASSET_NOTIFICATION_EVENT_START = 0;
@@ -93,4 +95,16 @@ message NotifySimtimeRequest {
 message NotifySimtimeReply {
   ErrorCode ercd = 1;
   int64 master_time = 2;
+}
+
+message CreatePduChannelRequest {
+  AssetInfo asset = 1;
+  int32 channel_id = 2;
+  int32 pdu_size = 3;
+  int32 asset_udp_port = 4;
+}
+
+message CreatePduChannelReply {
+  ErrorCode ercd = 1;
+  int32 master_udp_port = 2;
 }
