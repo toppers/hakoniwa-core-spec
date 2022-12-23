@@ -36,7 +36,7 @@ service CoreService {
   //箱庭シミュレーション時間取得
   rpc NotifySimtime(NotifySimtimeRequest) returns (NotifySimtimeReply) {}
   //箱庭PDUチャネル作成
-  rpc CreatePduChannel(CreatePduChannelRequest) returns (CreatePduCHannelReply) {}
+  rpc CreatePduChannel(CreatePduChannelRequest) returns (CreatePduChannelReply) {}
 }
 enum AssetNotificationEvent {
   ASSET_NOTIFICATION_EVENT_START = 0;
