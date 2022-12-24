@@ -37,6 +37,8 @@ service CoreService {
   rpc NotifySimtime(NotifySimtimeRequest) returns (NotifySimtimeReply) {}
   //箱庭PDUチャネル作成
   rpc CreatePduChannel(CreatePduChannelRequest) returns (CreatePduChannelReply) {}
+  //箱庭PDUチャネル購読
+  rpc SubscribePduChannel(SubscribePduChannelRequest) returns (SubscribePduChannelReply) {}
 }
 enum AssetNotificationEvent {
   ASSET_NOTIFICATION_EVENT_START = 0;
@@ -98,13 +100,19 @@ message NotifySimtimeReply {
 }
 
 message CreatePduChannelRequest {
-  AssetInfo asset = 1;
-  int32 channel_id = 2;
-  int32 pdu_size = 3;
-  int32 asset_udp_port = 4;
+  int32 channel_id = 1;
+  int32 pdu_size = 2;
 }
 
 message CreatePduChannelReply {
   ErrorCode ercd = 1;
   int32 master_udp_port = 2;
+}
+
+message SubscribePduChannelRequest {
+  int32 channel_id = 1;
+  int32 listen_udp_port = 2;
+}
+message SubscribePduChannelReply {
+  ErrorCode ercd = 1;
 }
