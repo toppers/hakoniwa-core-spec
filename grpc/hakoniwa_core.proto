@@ -116,7 +116,7 @@ message CreatePduChannelRequest {
 
 message CreatePduChannelReply {
   ErrorCode ercd = 1;
-  int32 master_udp_port = 2;
+  int32 port = 2;
 }
 
 message SubscribePduChannelRequest {
