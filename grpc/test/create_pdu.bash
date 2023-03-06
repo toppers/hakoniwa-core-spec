@@ -3,7 +3,7 @@
 source grpc/curl/env.bash
 
 bash grpc/curl/register.bash TEST 
-bash grpc/curl/create_pdu_channel.bash TEST 0 100
+bash grpc/curl/create_pdu_channel.bash TEST 0 100 "UDP"
 
 CURR_DIR=`pwd`
 cd ${HAKO_CORE_PATH}
